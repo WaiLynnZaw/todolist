@@ -10,7 +10,8 @@ import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 public class DrawerActivity extends MaterialNavigationDrawer{
     @Override
     public void init(Bundle bundle) {
+        this.disableLearningPattern();
         this.setDrawerHeaderImage(R.drawable.drawer_image);
-        this.addSection(newSection("My Notebooks",R.mipmap.ic_launcher,new MyNotebooks()));
+        this.addSection(newSection("My Notebooks",R.drawable.ic_action_diary,new MyNotebooks()));
     }
 }

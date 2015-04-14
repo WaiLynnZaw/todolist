@@ -6,30 +6,34 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.melnykov.fab.FloatingActionButton;
+import com.wlz.getshitdone.adapter.GridViewAdapter;
 import com.wlz.getshitdone.db.DiaryDao;
 import com.wlz.getshitdone.model.Diary;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-public class MyNotebooks extends Fragment {
+public class MyNotebooks extends Fragment implements AdapterView.OnItemLongClickListener {
     @InjectView(R.id.notebooks_gridview)
     GridView notebook_gridview;
     @InjectView(R.id.fab)
     FloatingActionButton fab;
+
     EditText title,content;
-    List<Diary> diaryList;
+    ArrayList<Diary> diaryList;
     DiaryDao diaryDao;
+    GridViewAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,8 +41,14 @@ public class MyNotebooks extends Fragment {
         ButterKnife.inject(this,v);
         diaryDao = new DiaryDao(getActivity());
         diaryList = new ArrayList<>();
+
         getDiaries();
+
+        adapter = new GridViewAdapter(getActivity(),diaryList);
+        notebook_gridview.setAdapter(adapter);
+        notebook_gridview.setOnItemLongClickListener(this);
         fab.attachToListView(notebook_gridview);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,19 +72,45 @@ public class MyNotebooks extends Fragment {
                         diary.created_at = Utils.getHttpDate();
                         diary.updated_at = Utils.getHttpDate();
                         diaryDao.create(diary);
-
+                        getDiaries();
+                        adapter.notifyDataSetChanged();
                     }
                 }).build();
         title = (EditText) dialog.getCustomView().findViewById(R.id.diary_title);
         content = (EditText) dialog.getCustomView().findViewById(R.id.diary_content);
         dialog.show();
     }
+
     private void getDiaries(){
         try {
-            diaryList = diaryDao.getAll();
+            diaryList.clear();
+            diaryList.addAll(diaryDao.getAll());
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+        new MaterialDialog.Builder(getActivity())
+                .title("Choose Action")
+                .items(R.array.edit_diary)
+                .itemsCallbackSingleChoice(0, new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                        if (i == 1) {
+                            try {
+                                diaryDao.deleteDiary(diaryList.get(i).id);
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                            getDiaries();
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                })
+                .positiveText("Choose")
+                .show();
+        return true;
     }
 }

@@ -7,6 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 @DatabaseTable(tableName = "diary")
 public class Diary {
+    @DatabaseField (generatedId = true) public int id;
     @DatabaseField public String title;
     @DatabaseField public String content;
     @DatabaseField public String created_at;

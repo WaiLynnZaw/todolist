@@ -45,4 +45,8 @@ public class DiaryDao {
     public void deleteAll() throws SQLException {
         TableUtils.clearTable(source, Diary.class);
     }
+
+    public void deleteDiary(int id) throws SQLException{
+       diaryDao.deleteById(id);
+    }
 }
