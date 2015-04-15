@@ -3,6 +3,7 @@ package com.wlz.getshitdone;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +92,7 @@ public class MyNotebooks extends Fragment implements AdapterView.OnItemLongClick
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int position, long l) {
         new MaterialDialog.Builder(getActivity())
                 .title("Choose Action")
                 .items(R.array.edit_diary)
@@ -99,8 +100,8 @@ public class MyNotebooks extends Fragment implements AdapterView.OnItemLongClick
                     @Override
                     public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
                         if (i == 1) {
-                            try {
-                                diaryDao.deleteDiary(diaryList.get(i).id);
+                            try {g
+                                diaryDao.deleteDiary(diaryList.get(position).id);
                             } catch (SQLException e) {
                                 e.printStackTrace();
                             }
