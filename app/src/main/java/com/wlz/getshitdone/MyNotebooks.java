@@ -100,7 +100,7 @@ public class MyNotebooks extends Fragment implements AdapterView.OnItemLongClick
                     @Override
                     public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
                         if (i == 1) {
-                            try {g
+                            try {
                                 diaryDao.deleteDiary(diaryList.get(position).id);
                             } catch (SQLException e) {
                                 e.printStackTrace();
