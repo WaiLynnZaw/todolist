@@ -1,6 +1,8 @@
-package com.wlz.getshitdone;
+package com.wlz.getshitdone.ui;
 
 import android.os.Bundle;
+
+import com.wlz.getshitdone.R;
 
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 

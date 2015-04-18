@@ -8,6 +8,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.wlz.getshitdone.model.Diary;
+import com.wlz.getshitdone.model.Notes;
 
 import java.sql.SQLException;
 
@@ -19,7 +20,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private Dao<Diary, Integer> diaryDao = null;
-//    private Dao<Models, Integer> modelDao = null;
+    private Dao<Notes, Integer> notesDao = null;
 //    private Dao<Manufacturers,Integer> manufacturerDao = null;
 //    private Dao<Locations,Integer> locationDao = null;
 //    private Dao<Colors,Integer> colorDao = null;
@@ -32,7 +33,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource,Diary.class);
-//            TableUtils.createTable(connectionSource, Models.class);
+            TableUtils.createTable(connectionSource, Notes.class);
 //            TableUtils.createTable(connectionSource, Manufacturers.class);
 //            TableUtils.createTable(connectionSource, Locations.class);
 //            TableUtils.createTable(connectionSource, Colors.class);
@@ -45,7 +46,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
             TableUtils.dropTable(connectionSource,Diary.class,true);
-//            TableUtils.dropTable(connectionSource,Models.class,true);
+            TableUtils.dropTable(connectionSource,Notes.class,true);
 //            TableUtils.dropTable(connectionSource,Manufacturers.class,true);
 //            TableUtils.dropTable(connectionSource,Locations.class,true);
 //            TableUtils.dropTable(connectionSource,Colors.class,true);
@@ -63,12 +64,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return diaryDao;
     }
 
-//    public Dao<Models,Integer> getModelDao() throws SQLException {
-//        if (modelDao == null) {
-//            modelDao = getDao(Models.class);
-//        }
-//        return modelDao;
-//    }
+    public Dao<Notes,Integer> getNotesDao() throws SQLException {
+        if (notesDao == null) {
+            notesDao = getDao(Notes.class);
+        }
+        return notesDao;
+    }
 //
 //    public Dao<Manufacturers,Integer> getManufacturerDao() throws SQLException {
 //        if (manufacturerDao == null){
@@ -95,7 +96,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void close() {
         super.close();
         diaryDao = null;
-//        modelDao = null;
+        notesDao = null;
 //        manufacturerDao = null;
 //        locationDao = null;
 //        colorDao = null;

@@ -5,53 +5,53 @@ import android.content.Context;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.wlz.getshitdone.model.Diary;
+import com.wlz.getshitdone.model.Notes;
 
 import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Created by WaiLynnZaw on 4/14/15.
+ * Created by WaiLynnZaw on 4/18/15.
  */
-public class DiaryDao {
+public class NotesDao {
     public static final String EMPTY_REC = "just_empty";
-    private Dao<Diary, Integer> diaryDao;
+    private Dao<Notes, Integer> notesDao;
     private ConnectionSource source;
 
-    public DiaryDao(Context ctx) {
+    public NotesDao(Context ctx) {
         DatabaseManager dbManager = new DatabaseManager();
         DatabaseHelper dbHelper = dbManager.getHelper(ctx);
         try {
-            diaryDao = dbHelper.getBuildTypeDao();
+            notesDao = dbHelper.getNotesDao();
             source = dbHelper.getConnectionSource();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public int create(Diary diary) {
+    public int create(Notes notes) {
         try {
-            return diaryDao.create(diary);
+            return notesDao.create(notes);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0;
     }
 
-    public List<Diary> getAll() throws SQLException {
-        return diaryDao.queryBuilder().query();
+    public List<Notes> getAll() throws SQLException {
+        return notesDao.queryBuilder().query();
     }
 
     public void deleteAll() throws SQLException {
-        TableUtils.clearTable(source, Diary.class);
+        TableUtils.clearTable(source, Notes.class);
     }
 
-    public void deleteDiary(int id) throws SQLException{
-       diaryDao.deleteById(id);
+    public void deleteNote(int id) throws SQLException{
+        notesDao.deleteById(id);
     }
 
-    public void updateDiary(Diary diary,int id) throws SQLException {
-        diaryDao.createOrUpdate(diary);
+    public void updateNote(Notes notes,int id) throws SQLException {
+        notesDao.createOrUpdate(notes);
 
     }
 }
