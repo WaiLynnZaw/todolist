@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/notes_title"
+        android:lines="2"
+        android:hint="Title:"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/notes_content"
+        android:layout_marginTop="8dp"
+        android:hint="Content:"
+        android:lines="16"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Accept"
+        android:textColor="#ffffff"
+        android:id="@+id/notes_accept"
+        android:background="@drawable/button_layout"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

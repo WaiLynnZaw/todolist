@@ -168,6 +168,8 @@ public class MyNotebooks extends Fragment implements AdapterView.OnItemLongClick
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        startActivity(new Intent(getActivity(),MyNotes.class));
+        Intent it = new Intent(getActivity(),MyNotes.class);
+        it.putExtra("id",diaryList.get(i).id);
+        startActivity(it);
     }
 }

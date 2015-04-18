@@ -8,6 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/notes_listView"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
         android:layout_gravity="center" />
     <tr.xip.errorview.ErrorView
         android:id="@+id/error_view"

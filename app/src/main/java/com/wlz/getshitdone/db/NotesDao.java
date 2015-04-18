@@ -3,6 +3,8 @@ package com.wlz.getshitdone.db;
 import android.content.Context;
 
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.wlz.getshitdone.model.Notes;
@@ -42,6 +44,18 @@ public class NotesDao {
         return notesDao.queryBuilder().query();
     }
 
+    public List<Notes> getAllById(int id) {
+        try {
+            QueryBuilder<Notes, Integer> qb = notesDao.queryBuilder();
+            qb.where().eq("diary_id", id);
+            PreparedQuery<Notes> pq = qb.prepare();
+            return notesDao.query(pq);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void deleteAll() throws SQLException {
         TableUtils.clearTable(source, Notes.class);
     }
@@ -50,7 +64,7 @@ public class NotesDao {
         notesDao.deleteById(id);
     }
 
-    public void updateNote(Notes notes,int id) throws SQLException {
+    public void updateNote(Notes notes) throws SQLException {
         notesDao.createOrUpdate(notes);
 
     }
