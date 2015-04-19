@@ -15,5 +15,10 @@ public class DrawerActivity extends MaterialNavigationDrawer{
         this.disableLearningPattern();
         this.setDrawerHeaderImage(R.drawable.drawer_image);
         this.addSection(newSection("My Notebooks",R.drawable.ic_action_diary,new MyNotebooks()));
+        this.addSection(newSection("TODO List",R.drawable.ic_action_diary,new MyNotebooks()));
+        this.addSection(newSection("My Vitamins",R.drawable.ic_action_diary,new MyNotebooks()));
+        this.addSection(newSection("My Money Tracker",R.drawable.ic_action_diary,new MyNotebooks()));
+        this.addSection(newSection("About",R.drawable.ic_action_diary,new AboutFragment()));
+
     }
 }

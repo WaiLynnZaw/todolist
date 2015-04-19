@@ -74,7 +74,7 @@ public class MyNotes extends ActionBarActivity implements AdapterView.OnItemClic
             if(notesDao.getAllById(diary_id).size() == 0){
                 errorView.setVisibility(View.VISIBLE);
                 errorView.setImageResource(R.mipmap.ic_launcher);
-                errorView.setTitle("You have no notebooks.");
+                errorView.setTitle("You have no notes.");
                 errorView.setSubtitle("");
                 errorView.setTitleColor(Color.parseColor("#a3a3a3"));
                 errorView.showRetryButton(false);
