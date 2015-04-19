@@ -3,6 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="desc_ap">A simple application for Diary and TODO List, MoneyTracker and Motivational Quotes!</string>
     <string-array name="edit_diary">
         <item>Edit</item>
         <item>Delete</item>

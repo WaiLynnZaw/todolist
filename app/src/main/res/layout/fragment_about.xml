@@ -1,11 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin">
 
-    <Button
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView"
+        android:layout_marginTop="16dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button" />
+        android:text="Version 1.0"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:layout_marginTop="8dp"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/desc_ap"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#a3a3a3"
+        android:text="New Text"
+        android:layout_margin="18dp"
+        android:id="@+id/textView4"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open Source Licences"
+        android:id="@+id/txt_osl"
+        android:textColor="#00f"
+        android:gravity="center"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
